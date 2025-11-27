@@ -198,13 +198,17 @@ function updateChart(props, regionName) {
 // --- 6. CHARGEMENT ET INITIALISATION ---
 
 function initMap() {
+    console.log("Tentative de chargement de data_maroc.json...");
     fetch('data_maroc.json')
         .then(response => {
-            if (!response.ok) throw new Error("Fichier introuvable");
+            if (!response.ok) {
+                // Erreur HTTP (ex: 404 Not Found)
+                throw new Error(`Erreur HTTP ! Statut: ${response.status} - Fichier non trouvé`);
+            }
             return response.json();
         })
         .then(data => {
-            console.log("Données chargées");
+            console.log("Données JSON chargées avec succès :", data);
 
             // Création de la couche GeoJSON
             geojsonLayer = L.geoJson(data, {
@@ -216,15 +220,15 @@ function initMap() {
             geojsonLayer.addTo(map);
 
             // Ajout dynamique au contrôleur de couches
-            // Cela permet de cocher/décocher "Données Régionales"
             layerControl.addOverlay(geojsonLayer, "Données Régionales");
 
             // Zoom sur le Maroc
             map.fitBounds(geojsonLayer.getBounds());
         })
         .catch(error => {
-            console.error(error);
-            alert("Erreur chargement JSON. Vérifiez la console (F12).");
+            console.error("ERREUR CRITIQUE :", error);
+            // Message d'alerte plus détaillé pour l'utilisateur
+            alert(`Impossible de charger les données.\n\nCause probable :\n1. Le fichier ne s'appelle pas 'data_maroc.json'.\n2. Le fichier n'est pas dans le même dossier.\n3. Erreur technique : ${error.message}`);
         });
 }
 
