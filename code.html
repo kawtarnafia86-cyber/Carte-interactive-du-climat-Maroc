@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climat & Végétation Maroc (2023-2025)</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Observatoire Climatique du Maroc</h1>
+        <p>Visualisation spatio-temporelle : Température, Précipitations et Indices de Végétation</p>
+    </header>
+
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <label for="variable-select">Variable à visualiser :</label>
+                <select id="variable-select">
+                    <option value="temp">Température Moyenne (Février)</option>
+                    <option value="precip">Précipitations (Février)</option>
+                    <option value="ndvi_high">Végétation Haute (Mai)</option>
+                    <option value="ndvi_low">Végétation Basse (Mai)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="year-select">Année de référence (Carte) :</label>
+                <select id="year-select">
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                </select>
+            </div>
+            
+            <div class="info-box">
+                <h3>Région sélectionnée</h3>
+                <p id="region-name">Cliquez sur une région</p>
+                <div id="region-value">--</div>
+            </div>
+        </div>
+
+        <div id="map"></div>
+
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

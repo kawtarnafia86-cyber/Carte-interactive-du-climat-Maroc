@@ -1,0 +1,206 @@
+/* Importation des polices Merriweather (titres) et Roboto (corps) */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500&display=swap');
+
+/* --- Définition des Variables de Style --- */
+:root {
+    --color-primary: #003366; /* Bleu foncé pour les titres et accents forts */
+    --color-accent: #007bff;   /* Bleu vif pour les clics/valeurs */
+    --font-title: 'Merriweather', serif;
+    --font-body: 'Roboto', sans-serif;
+    --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --bg-light: #f4f7f9;
+}
+
+/* --- Style Général --- */
+body {
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- En-tête (Header) --- */
+header {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: var(--shadow-subtle);
+}
+
+h1 {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-top: 5px;
+    color: #d1e2ff; /* Couleur plus claire pour le sous-titre */
+}
+
+/* --- Conteneur Principal (Grid/Flex Layout) --- */
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.map-and-controls {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* --- Carte Leaflet --- */
+#map-container {
+    flex: 2; 
+    height: 600px;
+    box-shadow: var(--shadow-subtle);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#map {
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* --- Barre Latérale (Sidebar) --- */
+.sidebar {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- Panneau de Contrôle (Filtres) --- */
+.controls-panel {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-subtle);
+    border: 1px solid #e0e0e0;
+}
+
+.controls-panel label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--color-primary);
+    font-size: 1rem;
+}
+
+.controls-panel select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease-in-out;
+}
+
+.controls-panel select:hover {
+    border-color: var(--color-accent);
+}
+
+.controls-panel select:focus {
+    border-color: var(--color-accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* --- Boîte d'Information Régionale --- */
+#region-info {
+    background-color: white;
+    padding: 20px;
+    border-left: 5px solid var(--color-accent); /* Accent bleu */
+    border-radius: 8px;
+    box-shadow: var(--shadow-subtle);
+    margin-top: 20px;
+    border: 1px solid #e0e0e0;
+}
+
+#info-title {
+    font-family: var(--font-title);
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+#region-name {
+    font-weight: 700;
+    color: var(--color-accent);
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#region-value {
+    font-size: 2.2rem;
+    font-family: var(--font-title);
+    font-weight: 900;
+    color: var(--color-primary);
+    display: block;
+    margin-top: 10px;
+}
+
+/* --- Graphique (Chart) --- */
+#chart-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-subtle);
+    min-height: 400px;
+    border: 1px solid #e0e0e0;
+}
+
+#myChart {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+/* --- Responsive Design (Mobile & Tablette) --- */
+@media (max-width: 1024px) {
+    .map-and-controls {
+        flex-direction: column; /* Colonne sur écrans étroits */
+    }
+    #map-container {
+        height: 400px; /* Réduire la hauteur de la carte */
+    }
+    .sidebar {
+        flex-direction: row; /* Les contrôles et infos passent côte à côte */
+        flex-wrap: wrap;
+    }
+    .controls-panel, #region-info {
+        flex: 1 1 48%; /* Deux éléments par ligne */
+    }
+    #chart-container {
+        flex: 1 1 100%; /* Le graphique prend toute la largeur */
+        order: 3; 
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    .controls-panel, #region-info {
+        flex: 1 1 100%; /* Un élément par ligne sur très petit écran */
+    }
+}
