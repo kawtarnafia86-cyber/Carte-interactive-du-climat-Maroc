@@ -74,7 +74,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 
     <!-- 6. SCRIPT LOCAL (DOIT ÊTRE LE DERNIER) -->
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
     
 </body>
 </html>
